@@ -42,6 +42,7 @@ var Player = function() {
 Player.prototype.update = function() {
   //reset player if they win by reaching the other side!
   if (this.y === 0) {
+    console.log('success');
     this.x = 200;
     this.y = 400;
   }
@@ -57,22 +58,22 @@ Player.prototype.render = function() {
 
 Player.prototype.handleInput = function(key) {
     if (key == "left" && this.x > 0) {
-      this.x -= 100;
+      this.x -= 101;
     }
     else if (key == "up" && this.y > 0) {
-      this.y -= 100;
+      this.y -= 83;
     }
     else if (key == "right" && this.x <= 300) {
-      this.x += 100;
+      this.x += 101;
     }
     else if (key == "down" && this.y <= 300) {
-      this.y += 100;
+      this.y += 83;
     }
 };
 
 var allEnemies = [];
 for (i = 0; i < 6; i++) {
-    var yVals = [50, 100, 200]; //possible y-axis positions the enemy can be rendered
+    var yVals = [68, 151, 234]; //possible y-axis positions the enemy can be rendered
     var xVal = Enemy.prototype.getRandomIntInclusive(-300, -100);
     var startY = Enemy.prototype.getRandomIntInclusive(0, 2);
     var startSpeed = Enemy.prototype.getRandomIntInclusive(50,200);
