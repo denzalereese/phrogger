@@ -10,7 +10,7 @@ var Enemy = function(x, y, speed) {
 };
 
 //get random int to randomize enemy speed and where enemy is rendered on the Y-axis
-function getRandomIntInclusive(min, max) {
+Enemy.prototype.getRandomIntInclusive = function(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
@@ -22,7 +22,7 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     this.x = this.x + this.speed*dt;
     if (this.x >= 500) {
-      this.x =  getRandomIntInclusive(-300, -100);
+      this.x =  this.getRandomIntInclusive(-300, -100);
     }
     //checks collisions and resets player if they collide
     if ((playerX >= this.x - 48 && playerX <= this.x + 48) && this.y == playerY) {
@@ -80,9 +80,9 @@ Player.prototype.handleInput = function(key) {
 var allEnemies = [];
 for (i = 0; i < 6; i++) {
     var yVals = [50, 100, 200]; //possible y-axis positions the enemy can be rendered
-    var xVal = getRandomIntInclusive(-300, -100);
-    var startY = getRandomIntInclusive(0, 2);
-    var startSpeed = getRandomIntInclusive(50,200);
+    var xVal = Enemy.prototype.getRandomIntInclusive(-300, -100);
+    var startY = Enemy.prototype.getRandomIntInclusive(0, 2);
+    var startSpeed = Enemy.prototype.getRandomIntInclusive(50,200);
     allEnemies.push(new Enemy(xVal, yVals[startY], startSpeed));
 }
 
