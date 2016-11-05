@@ -25,7 +25,7 @@ Enemy.prototype.update = function(dt) {
       this.x =  this.getRandomIntInclusive(-300, -100);
     }
     //checks collisions and resets player if they collide
-    if ((playerX >= this.x - 48 && playerX <= this.x + 48) && this.y == playerY) {
+    if ((playerX >= this.x - 48 && playerX <= this.x + 48) && this.y === playerY) {
       playerX = 200;
       playerY = 400;
     }
@@ -48,7 +48,7 @@ Player.prototype.update = function() {
   this.x = playerX;
   this.y = playerY;
   //reset player if they win by reaching the other side!
-  if (this.y == 0) {
+  if (this.y === 0) {
     playerX = 200;
     playerY = 400;
   }
