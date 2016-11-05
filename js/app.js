@@ -1,6 +1,3 @@
-var playerX;
-var playerY;
-
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
     this.sprite = 'images/enemy-bug.png';
@@ -25,9 +22,9 @@ Enemy.prototype.update = function(dt) {
       this.x =  this.getRandomIntInclusive(-300, -100);
     }
     //checks collisions and resets player if they collide
-    if ((playerX >= this.x - 48 && playerX <= this.x + 48) && this.y === playerY) {
-      playerX = 200;
-      playerY = 400;
+    if ((player.x >= this.x - 48 && player.x <= this.x + 48) && this.y === player.y) {
+      player.x = 200;
+      player.y = 400;
     }
 };
 
@@ -40,40 +37,36 @@ var Player = function() {
   this.sprite = "images/char-boy.png";
   this.x = 200;
   this.y = 400;
-  playerX= this.x;
-  playerY = this.y;
 };
 
 Player.prototype.update = function() {
-  this.x = playerX;
-  this.y = playerY;
   //reset player if they win by reaching the other side!
   if (this.y === 0) {
-    playerX = 200;
-    playerY = 400;
+    this.x = 200;
+    this.y = 400;
   }
 };
 
 Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-  if (playerY < 0){
-    playerY = 400;
-    playerX = 200;
+  if (this.y < 0){
+    this.y = 400;
+    this.x = 200;
   }
 };
 
 Player.prototype.handleInput = function(key) {
-    if (key == "left" && playerX > 0) {
-      playerX -= 100;
+    if (key == "left" && this.x > 0) {
+      this.x -= 100;
     }
-    else if (key == "up" && playerY > 0) {
-      playerY -= 100;
+    else if (key == "up" && this.y > 0) {
+      this.y -= 100;
     }
-    else if (key == "right" && playerX <= 300) {
-      playerX += 100;
+    else if (key == "right" && this.x <= 300) {
+      this.x += 100;
     }
-    else if (key == "down" && playerY <= 300) {
-      playerY += 100;
+    else if (key == "down" && this.y <= 300) {
+      this.y += 100;
     }
 };
 
